@@ -35,7 +35,7 @@ public class BeanHelper {
                             entityWriteMethod.invoke(entity, dtoValue);
                         }
                     } catch (IllegalAccessException | InvocationTargetException e) {
-                        logger.error("entity field: %s, dto field: %s, message: %s",
+                        logger.error("entity field: {}, dto field: {}, message: {}",
                                 entityPd.getName(), dtoPd.getName(), e.getMessage());
                         throw new BeanCopyNotSuccessException(e);
                     }
