@@ -15,6 +15,11 @@ spring:
     url: ${spring.datasource.url}
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
+    locations: classpath:db/migration
+    validate-on-migrate: true
+    baselineOnMigrate: true
+    logging: debug
+
   jpa:
     properties:
       hibernate:
@@ -24,14 +29,8 @@ spring:
         format_sql: true
     show-sql: true
 
-management:
-  endpoint:
-    health:
-      show-details: always
 cors:
   allowed-origins: "*"
   allowed-methods: "*"
   allowed-headers: "*"
   exposed-headers: "*"
-
-
