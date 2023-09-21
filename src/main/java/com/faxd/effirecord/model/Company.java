@@ -1,6 +1,5 @@
 package com.faxd.effirecord.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,8 +14,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
@@ -51,5 +48,6 @@ public class Company {
     @UpdateTimestamp
     private LocalDateTime updatedTime;
 
-
+    @OneToMany(mappedBy = "company",fetch = FetchType.EAGER)
+    private List<Project> projects;
 }
