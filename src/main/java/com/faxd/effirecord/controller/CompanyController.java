@@ -6,6 +6,7 @@ import com.faxd.effirecord.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,8 +26,20 @@ public class CompanyController {
         return companyService.register(companyPostDto);
     }
 
+    @GetMapping("/{id}")
+    public CompanyInfoDto getCompanyById(@PathVariable Long id){
+        return companyService.getCompanyById(id);
+
+    }
+
     @DeleteMapping("/{id}")
     public void deleteCompany(@PathVariable Long id){
         companyService.deleteCompany(id);
     }
+
+    @GetMapping("/project/{projectId}/verify")
+    public void verifyProjectById(@PathVariable Long projectId){
+        companyService.verifyProject(projectId);
+    }
+
 }

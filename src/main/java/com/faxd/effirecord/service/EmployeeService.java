@@ -5,7 +5,7 @@ import com.faxd.effirecord.dto.employee.EmployeePostDto;
 import com.faxd.effirecord.dto.employee.EmployeePutDto;
 import com.faxd.effirecord.exception.EmployeeNotFoundException;
 import com.faxd.effirecord.mapper.EmployeeMapper;
-import com.faxd.effirecord.model.Employees;
+import com.faxd.effirecord.model.Employee;
 import com.faxd.effirecord.repository.EmployeeRepository;
 import com.faxd.effirecord.utils.BeanHelper;
 import lombok.RequiredArgsConstructor;
@@ -28,26 +28,26 @@ public class EmployeeService {
     private final EmployeeMapper employeeMapper;
 
     public EmployeeInfoDto signIn(final EmployeePostDto employeePostDto){
-        Employees employees = employeeMapper.employeePostDtoToEmployees(employeePostDto);
-        Employees savedEmployees = employeeRepository.save(employees);
-        return employeeMapper.employeesToEmployInfoDto(savedEmployees);
+        Employee employees = employeeMapper.employeePostDtoToEmployee(employeePostDto);
+        Employee savedEmployees = employeeRepository.save(employees);
+        return employeeMapper.employeeToEmployInfoDto(savedEmployees);
     }
 
     public EmployeeInfoDto getEmployeeInfo(final Long id) {
-        Optional<Employees> employees = employeeRepository.findById(id);
-        Employees employeeValue = employees.orElseThrow(() -> new EmployeeNotFoundException(id));
-        return employeeMapper.employeesToEmployInfoDto(employeeValue);
+        Optional<Employee> employee = employeeRepository.findById(id);
+        Employee employeeValue = employee.orElseThrow(() -> new EmployeeNotFoundException(id));
+        return employeeMapper.employeeToEmployInfoDto(employeeValue);
     }
 
     public void upsertEmployeeInfo(final Long id, final EmployeePutDto employeePutDto) {
-        Optional<Employees> employeesOptional = employeeRepository.findById(id);
+        Optional<Employee> employeesOptional = employeeRepository.findById(id);
         employeesOptional.ifPresentOrElse(
-                employees -> BeanHelper.CopyDtoIntoEntity(employees, employeePutDto),
+                employee -> BeanHelper.CopyDtoIntoEntity(employee, employeePutDto),
                () -> {
                     logger.warn("Task: {}, employee_id: {}, updated_employee_dto: {}.",
                             "update not exist employee information",
                             id, employeePutDto.toString());
-                   Employees employees = employeeMapper.employeePutDtoToEmployees(employeePutDto);
+                   Employee employees = employeeMapper.employeePutDtoToEmployee(employeePutDto);
                    employeeRepository.save(employees);
                }
         );
@@ -55,7 +55,7 @@ public class EmployeeService {
     }
 
     public void verifyEmployee(Long id) {
-        Optional<Employees> employeesOptional = employeeRepository.findById(id);
+        Optional<Employee> employeesOptional = employeeRepository.findById(id);
         employeesOptional.ifPresentOrElse(employees -> employees.setVerified(true),
                 () -> {
                     logger.error("the employee with id: {} does not exist", id);
@@ -64,7 +64,7 @@ public class EmployeeService {
     }
 
     public void deleteEmployeeById(Long id) {
-        Optional<Employees> employeesOptional = employeeRepository.findById(id);
+        Optional<Employee> employeesOptional = employeeRepository.findById(id);
         employeesOptional.ifPresentOrElse(employees -> employees.setIsDeleted(true),
                 () -> {
                     logger.error("the employee with id: {} does not exist", id);

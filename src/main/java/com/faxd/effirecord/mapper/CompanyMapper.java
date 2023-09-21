@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CompanyMapper {
-    Company CompanyPostDtoToCompany(CompanyPostDto companyPostDto);
+    Company companyPostDtoToCompany(CompanyPostDto companyPostDto);
 
-    CompanyInfoDto CompanyToCompanyInfoDto(Company company);
+    CompanyInfoDto companyToCompanyInfoDto(Company company);
 
 }
