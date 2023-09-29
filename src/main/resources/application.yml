@@ -34,3 +34,8 @@ cors:
   allowed-methods: "*"
   allowed-headers: "*"
   exposed-headers: "*"
+
+effirecord:
+  openapi:
+    dev-url: http://localhost:${server.port}/api/v1
+    prod-url: http://localhost:${server.port}/api/v1
