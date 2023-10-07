@@ -1,7 +1,5 @@
 package com.faxd.effirecord.dto.payroll;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.faxd.effirecord.constant.PaymentMethodType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

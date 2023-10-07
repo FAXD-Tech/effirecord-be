@@ -1,8 +1,5 @@
 package com.faxd.effirecord.constant;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.faxd.effirecord.exception.PaymentMethodException;
-
 public enum PaymentMethodType {
     WECHAT("微信支付"),
     ALIPAY("支付宝"),

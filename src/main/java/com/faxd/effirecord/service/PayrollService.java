@@ -32,28 +32,27 @@ public class PayrollService {
     private final PayrollMapper payrollMapper;
 
     public void createPayroll(List<PayrollPostDto> payrollPostDtoList) {
-        payrollPostDtoList.forEach(payrollPostDto -> {
-            employeeRepository.findByIdAndIsVerifiedTrueAndIsDeletedFalse(payrollPostDto.getPayeeId())
-                    .ifPresentOrElse(
-                            employee -> {
-                                Payroll payroll = payrollMapper.payrollPostDtoToPayroll(payrollPostDto);
-                                payroll.setPayee(employee);
-                                employeeRepository.findByIdAndIsVerifiedTrueAndIsDeletedFalse(payrollPostDto.getPayerId())
-                                        .ifPresentOrElse(payroll::setPayer,
-                                                () -> {
-                                                    logger.warn("Can not find the payer according to the employee id: {}",
-                                                            payrollPostDto.getPayerId());
-                                                    throw new EmployeeNotFoundException(payrollPostDto.getPayerId());
-                                                });
-                                payrollRepository.save(payroll);
-                            },
-                            () -> {
-                                logger.warn("Can not find the payee according to the employee id: {}",
-                                        payrollPostDto.getPayeeId());
-                                throw new EmployeeNotFoundException(payrollPostDto.getPayeeId());
-                            }
-                    );
-        });
+        payrollPostDtoList.forEach(payrollPostDto ->
+                employeeRepository.findByIdAndIsVerifiedTrueAndIsDeletedFalse(payrollPostDto.getPayeeId())
+                        .ifPresentOrElse(
+                                employee -> {
+                                    Payroll payroll = payrollMapper.payrollPostDtoToPayroll(payrollPostDto);
+                                    payroll.setPayee(employee);
+                                    employeeRepository.findByIdAndIsVerifiedTrueAndIsDeletedFalse(payrollPostDto.getPayerId())
+                                            .ifPresentOrElse(payroll::setPayer,
+                                                    () -> {
+                                                        logger.warn("Can not find the payer according to the employee id: {}",
+                                                                payrollPostDto.getPayerId());
+                                                        throw new EmployeeNotFoundException(payrollPostDto.getPayerId());
+                                                    });
+                                    payrollRepository.save(payroll);
+                                },
+                                () -> {
+                                    logger.warn("Can not find the payee according to the employee id: {}",
+                                            payrollPostDto.getPayeeId());
+                                    throw new EmployeeNotFoundException(payrollPostDto.getPayeeId());
+                                }
+                        ));
     }
 
     public List<PayrollInfoDto> getPayrollRecordByPayeeId(final Long payeeId, final LocalDate start, final LocalDate end) {

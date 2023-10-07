@@ -1,6 +1,5 @@
 package com.faxd.effirecord.dto.payroll;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.faxd.effirecord.constant.PaymentMethodType;
 import com.faxd.effirecord.utils.PaymentMethodTypeSerializer;

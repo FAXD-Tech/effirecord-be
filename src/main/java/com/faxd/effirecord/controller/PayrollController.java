@@ -2,12 +2,10 @@ package com.faxd.effirecord.controller;
 
 import com.faxd.effirecord.dto.payroll.PayrollInfoDto;
 import com.faxd.effirecord.dto.payroll.PayrollPostDto;
-import com.faxd.effirecord.model.Payroll;
 import com.faxd.effirecord.service.PayrollService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
