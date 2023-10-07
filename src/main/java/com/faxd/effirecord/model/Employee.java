@@ -18,8 +18,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
@@ -60,4 +62,7 @@ public class Employee {
     @JoinColumn(name = "current_project_id")
     @JsonBackReference
     private Project projects;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Payroll> payrolls;
 }
