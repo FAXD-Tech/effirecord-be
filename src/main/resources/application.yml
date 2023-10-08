@@ -29,6 +29,10 @@ spring:
         format_sql: true
     show-sql: true
 
+logging:
+  level:
+    org.hibernate: info
+
 cors:
   allowed-origins: "*"
   allowed-methods: "*"
@@ -39,3 +43,21 @@ effirecord:
   openapi:
     dev-url: http://localhost:${server.port}/api/v1
     prod-url: http://localhost:${server.port}/api/v1
+card:
+  banks:
+      ICBC: 中国工商银行
+      ABC: 中国农业银行
+      BOC: 中国银行
+      CCB: 中国建设银行
+      CMBC: 中国民生银行
+      CMB: 招商银行
+      SPD: 上海浦东发展银行
+      CITIC: 中信银行
+      CIB: 兴业银行
+      PSBC: 中国邮政储蓄银行
+      HXB: 华夏银行
+      CGB: 广发银行
+      PAB: 平安银行
+      CEB: 光大银行
+      CMBWLB: 中国招商银行
+      HKBEA: 东亚银行（中国）
