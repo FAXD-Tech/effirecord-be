@@ -15,7 +15,7 @@ import java.util.Optional;
 @Repository
 public interface PayrollRepository extends JpaRepository<Payroll, Long> {
 
-    Optional<List<PayrollInfoDto>> findALLByPayeeIdAndIsDeletedFalseAndPaidDateBetween(Long payeeId, LocalDate start, LocalDate end);
+    Optional<List<Payroll>> findALLByPayeeIdAndIsDeletedFalseAndPaidDateBetween(Long payeeId, LocalDate start, LocalDate end);
 
     Optional<Payroll> findByIdAndIsDeletedFalse(Long id);
     @Modifying

@@ -57,7 +57,8 @@ public class PayrollService {
 
     public List<PayrollInfoDto> getPayrollRecordByPayeeId(final Long payeeId, final LocalDate start, final LocalDate end) {
         return payrollRepository.findALLByPayeeIdAndIsDeletedFalseAndPaidDateBetween(payeeId, start, end)
-                .orElseGet(Collections::emptyList);
+                .map(payrolls -> payrolls.stream().map(payrollMapper::payrollToPayrollInfoDto).toList())
+                .orElse(Collections.emptyList());
     }
 
 
