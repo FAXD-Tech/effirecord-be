@@ -30,4 +30,6 @@ public class PayrollInfoDto {
     private String payerName;
 
     private String comment;
+
+
 }
