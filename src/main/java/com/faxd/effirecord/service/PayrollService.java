@@ -33,12 +33,12 @@ public class PayrollService {
 
     public void createPayroll(List<PayrollPostDto> payrollPostDtoList) {
         payrollPostDtoList.forEach(payrollPostDto ->
-                employeeRepository.findByIdAndIsVerifiedTrueAndIsDeletedFalse(payrollPostDto.getPayeeId())
+                employeeRepository.findByIdAndIsDeletedFalseAndIsVerifiedTrue(payrollPostDto.getPayeeId())
                         .ifPresentOrElse(
                                 employee -> {
                                     Payroll payroll = payrollMapper.payrollPostDtoToPayroll(payrollPostDto);
                                     payroll.setPayee(employee);
-                                    employeeRepository.findByIdAndIsVerifiedTrueAndIsDeletedFalse(payrollPostDto.getPayerId())
+                                    employeeRepository.findByIdAndIsDeletedFalseAndIsVerifiedTrue(payrollPostDto.getPayerId())
                                             .ifPresentOrElse(payroll::setPayer,
                                                     () -> {
                                                         logger.warn("Can not find the payer according to the employee id: {}",
