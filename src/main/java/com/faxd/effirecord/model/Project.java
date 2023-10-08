@@ -55,6 +55,6 @@ public class Project {
     @UpdateTimestamp
     private LocalDateTime updatedTime;
 
-    @OneToMany(mappedBy = "projects")
+    @OneToMany(mappedBy = "currentProject")
     private List<Employee> employees;
 }

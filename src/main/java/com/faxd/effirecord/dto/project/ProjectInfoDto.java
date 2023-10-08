@@ -1,6 +1,6 @@
 package com.faxd.effirecord.dto.project;
 
-import com.faxd.effirecord.dto.employee.EmployeeInfoDto;
+import com.faxd.effirecord.dto.employee.EmployeeSlimInfoDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProjectInfoDto {
+    private Long id;
     private String name;
-    private List<EmployeeInfoDto> employees;
+    private List<EmployeeSlimInfoDto> employees;
 }

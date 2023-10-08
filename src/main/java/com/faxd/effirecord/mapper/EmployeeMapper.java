@@ -4,6 +4,7 @@ package com.faxd.effirecord.mapper;
 import com.faxd.effirecord.dto.employee.EmployeeInfoDto;
 import com.faxd.effirecord.dto.employee.EmployeePostDto;
 import com.faxd.effirecord.dto.employee.EmployeePutDto;
+import com.faxd.effirecord.dto.employee.EmployeeSlimInfoDto;
 import com.faxd.effirecord.model.Employee;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -17,6 +18,6 @@ public interface EmployeeMapper {
     Employee employeePutDtoToEmployee(EmployeePutDto employeePutDto);
 
     EmployeeInfoDto employeeToEmployInfoDto(Employee employees);
-
+    EmployeeSlimInfoDto employeeToEmploySlimInfoDto(Employee employees);
 
 }
