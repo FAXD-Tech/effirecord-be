@@ -8,5 +8,4 @@ import java.util.Optional;
 @Repository
 public interface ProjectRepository extends BaseVerifiedRepository<Project, Long> {
 
-    Optional<Project> findByIdAndIsDeletedFalseAndVerifiedTrue(Long projectId);
 }

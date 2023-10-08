@@ -37,7 +37,7 @@ public class CardService {
 
     public void createCard(final CardPostDto cardPostDto) {
         Long employeeId = cardPostDto.getEmployeeId();
-        employeeRepository.findByIdAndIsVerifiedTrueAndIsDeletedFalse(cardPostDto.getEmployeeId()).ifPresentOrElse(
+        employeeRepository.findByIdAndIsDeletedFalseAndIsVerifiedTrue(cardPostDto.getEmployeeId()).ifPresentOrElse(
                 employee -> {
                     Boolean existed = cardRepository.existsByEmployeeIdAndIsDeletedFalse(employeeId);
                     if (!existed){
