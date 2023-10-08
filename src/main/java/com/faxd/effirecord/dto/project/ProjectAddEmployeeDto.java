@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -15,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class ProjectAddEmployeeDto {
-    @NotEmpty
+    @NotNull
     private Long projectId;
 
     @NotEmpty

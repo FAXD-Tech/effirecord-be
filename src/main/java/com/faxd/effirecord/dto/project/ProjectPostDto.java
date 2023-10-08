@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -22,6 +23,6 @@ public class ProjectPostDto {
     @Size(max = 255, message = "project name can not be more than 255 characters.")
     private String name;
 
-    @NotEmpty
+    @NotNull
     private Long companyId;
 }

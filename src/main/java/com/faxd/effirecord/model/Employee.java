@@ -61,7 +61,7 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "current_project_id")
     @JsonBackReference
-    private Project projects;
+    private Project currentProject;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Payroll> payrolls;
