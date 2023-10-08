@@ -1,6 +1,5 @@
 package com.faxd.effirecord.dto.project;
 
-import com.faxd.effirecord.dto.employee.EmployeeInfoDto;
 import com.faxd.effirecord.dto.employee.EmployeeSlimInfoDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
