@@ -1,11 +1,8 @@
 package com.faxd.effirecord.mapper;
 
-import com.faxd.effirecord.config.CardConfig;
 import com.faxd.effirecord.dto.card.CardInfoDto;
 import com.faxd.effirecord.dto.card.CardPostDto;
 import com.faxd.effirecord.model.Card;
-import lombok.RequiredArgsConstructor;
-import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
