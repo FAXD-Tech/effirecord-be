@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class PayrollController {
             summary = "Create payroll record",
             description = "Create payroll record.")
     @PostMapping("")
-    public void createPayroll(@RequestBody ArrayList<PayrollPostDto> payrollPostDtoListList){
+    public void createPayroll(@Valid @RequestBody ArrayList<PayrollPostDto> payrollPostDtoListList){
         payrollService.createPayroll(payrollPostDtoListList);
     }
 

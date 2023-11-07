@@ -47,6 +47,15 @@ public class Employee extends BaseEntity{
     @OneToMany(fetch = FetchType.LAZY)
     private List<Payroll> payrolls;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employee")
     private List<Card> cards;
+
+    @OneToMany(mappedBy = "employee")
+    private List<WorkHours> workHoursList;
+
+    @OneToMany(mappedBy = "createdBy")
+    private List<WorkHours> createdBy;
+
+    @OneToMany(mappedBy = "updatedBy")
+    private List<WorkHours> updatedBy;
 }

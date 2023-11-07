@@ -29,6 +29,6 @@ public class Company extends BaseEntity{
     @Builder.Default
     private boolean isVerified = false;
 
-    @OneToMany(mappedBy = "company",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company",fetch = FetchType.LAZY)
     private List<Project> projects;
 }
