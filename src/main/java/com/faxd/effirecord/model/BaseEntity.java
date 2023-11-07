@@ -11,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @MappedSuperclass
 @Getter
@@ -25,8 +25,8 @@ public class BaseEntity {
     private Boolean isDeleted = false;
 
     @CreationTimestamp
-    private LocalDateTime createdTime;
+    private OffsetDateTime createdTime;
 
     @UpdateTimestamp
-    private LocalDateTime updatedTime;
+    private OffsetDateTime updatedTime;
 }
