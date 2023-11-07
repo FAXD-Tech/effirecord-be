@@ -13,7 +13,6 @@ import com.faxd.effirecord.exception.ProjectNotFoundException;
 import com.faxd.effirecord.exception.WorkHoursNotFoundException;
 import com.faxd.effirecord.mapper.ProjectMapper;
 import com.faxd.effirecord.mapper.WorkHoursMapper;
-import com.faxd.effirecord.model.BaseEntity;
 import com.faxd.effirecord.model.Employee;
 import com.faxd.effirecord.model.Project;
 import com.faxd.effirecord.model.WorkHours;
@@ -36,7 +35,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor

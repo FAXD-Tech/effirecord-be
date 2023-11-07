@@ -1,6 +1,5 @@
 package com.faxd.effirecord.repository;
 
-import com.faxd.effirecord.dto.WorkHours.WorkHoursMonthlyInfoDto;
 import com.faxd.effirecord.model.WorkHours;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

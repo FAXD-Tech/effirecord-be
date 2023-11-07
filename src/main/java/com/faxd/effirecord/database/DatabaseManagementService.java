@@ -14,10 +14,6 @@ public class DatabaseManagementService {
 
     private final JdbcTemplate jdbcTemplate;
 
-    /**
-     * \
-     * @param attendanceDate
-     */
     public void createNewWorkHoursPartition( LocalDate attendanceDate) {
         String attendanceMonth = attendanceDate.format(DateTimeFormatter.ofPattern("yyyy-MM"));
         String insertDateMonth = attendanceDate.format(DateTimeFormatter.ofPattern("yyyy_MM"));
@@ -30,9 +26,7 @@ public class DatabaseManagementService {
 
             try {
                 jdbcTemplate.execute(createPartitionSQL);
-                // 分区表创建成功
             } catch (Exception e) {
-                // 分区表创建失败，处理异常
                 e.printStackTrace();
             }
         }
