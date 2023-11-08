@@ -99,9 +99,7 @@ public class EmployeeServiceTest {
 
         when(employeeRepository.findById(id)).thenReturn(Optional.empty());
 
-        assertThrows(EmployeeNotFoundException.class, () -> {
-            employeeService.upsertEmployeeInfo(id, putDto);
-        });
+        assertThrows(EmployeeNotFoundException.class, () -> employeeService.upsertEmployeeInfo(id, putDto));
 
         verify(employeeRepository, times(1)).findById(id);
     }
