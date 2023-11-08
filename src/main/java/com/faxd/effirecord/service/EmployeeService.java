@@ -42,13 +42,16 @@ public class EmployeeService {
     public void upsertEmployeeInfo(final Long id, final EmployeePutDto employeePutDto) {
         Optional<Employee> employeesOptional = employeeRepository.findById(id);
         employeesOptional.ifPresentOrElse(
-                employee -> BeanHelper.CopyDtoIntoEntity(employee, employeePutDto),
+                employee -> {
+                    BeanHelper.CopyDtoIntoEntity(employee, employeePutDto);
+                    Employee employees = employeeMapper.employeePutDtoToEmployee(employeePutDto);
+                    employeeRepository.save(employees);
+                },
                () -> {
                     logger.warn("Task: {}, employee_id: {}, updated_employee_dto: {}.",
                             "update not exist employee information",
                             id, employeePutDto.toString());
-                   Employee employees = employeeMapper.employeePutDtoToEmployee(employeePutDto);
-                   employeeRepository.save(employees);
+                   throw new EmployeeNotFoundException(id);
                }
         );
 
