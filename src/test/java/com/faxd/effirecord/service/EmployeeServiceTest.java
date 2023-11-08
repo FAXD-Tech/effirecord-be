@@ -73,9 +73,7 @@ public class EmployeeServiceTest {
         Long id = 1L;
         when(employeeRepository.findById(id)).thenReturn(Optional.empty());
 
-        assertThrows(EmployeeNotFoundException.class, () -> {
-            employeeService.getEmployeeInfo(id);
-        });
+        assertThrows(EmployeeNotFoundException.class, () -> employeeService.getEmployeeInfo(id));
     }
 
     @Test
@@ -113,11 +111,11 @@ public class EmployeeServiceTest {
         Long id = 1L; // Sample ID
         Employee existingEmployee = createEmployeeSample();
 
-        when(employeeRepository.findById(id)).thenReturn(Optional.of(createEmployeeSample()));
+        when(employeeRepository.findById(id)).thenReturn(Optional.of(existingEmployee));
 
         employeeService.verifyEmployee(id);
 
-        assertTrue(createEmployeeSample().isVerified());
+        assertTrue(existingEmployee.isVerified());
         verify(employeeRepository, times(1)).findById(id);
     }
 
@@ -126,9 +124,7 @@ public class EmployeeServiceTest {
         Long id = 1L; // Sample ID
         when(employeeRepository.findById(id)).thenReturn(Optional.empty());
 
-        assertThrows(EmployeeNotFoundException.class, () -> {
-            employeeService.verifyEmployee(id);
-        });
+        assertThrows(EmployeeNotFoundException.class, () -> employeeService.verifyEmployee(id));
     }
 
     @Test
@@ -149,9 +145,7 @@ public class EmployeeServiceTest {
         Long id = 1L; // Sample ID
         when(employeeRepository.findById(id)).thenReturn(Optional.empty());
 
-        assertThrows(EmployeeNotFoundException.class, () -> {
-            employeeService.deleteEmployeeById(id);
-        });
+        assertThrows(EmployeeNotFoundException.class, () -> employeeService.deleteEmployeeById(id));
     }
 
     private Employee createEmployeeSample() {
