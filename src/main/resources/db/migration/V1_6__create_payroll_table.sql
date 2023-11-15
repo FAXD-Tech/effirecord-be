@@ -11,7 +11,7 @@ CREATE TABLE "payroll"
     "comment"        VARCHAR(255),
     "payer_id"       BIGINT                                             NOT NULL,
     CONSTRAINT fk_employee_payer_payroll
-        FOREIGN KEY (employee_id)
+        FOREIGN KEY (payer_id)
             REFERENCES "employees" (id),
     "card_id"        BIGINT,
     CONSTRAINT f_card_payroll
