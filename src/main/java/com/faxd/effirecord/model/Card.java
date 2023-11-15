@@ -21,6 +21,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Card extends BaseEntity{
+    private String alias;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
@@ -41,6 +42,4 @@ public class Card extends BaseEntity{
 
     @Column(name = "bank_outlet")
     private String bankOutlet;
-
-    private String comments;
 }
