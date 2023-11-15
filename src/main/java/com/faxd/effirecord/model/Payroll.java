@@ -29,8 +29,12 @@ import java.time.LocalDate;
 public class Payroll extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payee_id")
+    @JoinColumn(name = "payee_id",nullable = false)
     private Employee payee;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "card_id")
+    private Card card;
 
     @Column(name = "paid_money",nullable = false)
     private BigDecimal paidMoney;
@@ -42,7 +46,7 @@ public class Payroll extends BaseEntity{
     private String comment;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payer_id")
+    @JoinColumn(name = "payer_id",nullable = false)
     private Employee payer;
 
     @Column(name = "payment_method",nullable = false)
