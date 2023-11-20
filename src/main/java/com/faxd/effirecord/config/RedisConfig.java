@@ -1,6 +1,5 @@
 package com.faxd.effirecord.config;
 
-import com.faxd.effirecord.utils.FastJsonRedisSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;

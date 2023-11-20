@@ -1,7 +1,5 @@
 package com.faxd.effirecord.auth.filter;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.faxd.effirecord.auth.EffiRecordUserDetails;
 import com.faxd.effirecord.constant.R;
 import com.faxd.effirecord.jwt.JwtUtil;

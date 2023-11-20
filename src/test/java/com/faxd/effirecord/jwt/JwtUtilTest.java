@@ -1,8 +1,7 @@
 package com.faxd.effirecord.jwt;
 
+import io.jsonwebtoken.security.Keys;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,18 +12,14 @@ import javax.crypto.SecretKey;
 
 @SpringBootTest
 public class JwtUtilTest {
-
-    @Autowired
-    private SecretKey secretKey;
-
     @Autowired
     private JwtConfig jwtConfig;
 
-    @Autowired
-    private JwtUtil jwtUtil;
-
     @Test
     void createAndParseJWTTest(){
+        SecretKey secretKey = Keys.hmacShaKeyFor("secretKey-d5689193-8bc1-419f-a062-9779ee25ce03".getBytes());
+        JwtUtil jwtUtil = new JwtUtil(jwtConfig);
+
         Long employeeId = 20L;
         String jwt = jwtUtil.createJWT(employeeId);
         System.out.println(jwt);

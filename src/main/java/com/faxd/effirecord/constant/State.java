@@ -12,8 +12,7 @@ public enum State {
     ERR_UPDATE(50001),//service --  update error
     ERR_INTERNAL_SERVER(500);//service --  update error
 
-
-    private Integer value;
+    private final Integer value;
 
     private State(Integer value){
         this.value=value;

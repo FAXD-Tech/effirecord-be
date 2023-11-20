@@ -1,7 +1,5 @@
 package com.faxd.effirecord.constant;
 
-import org.springframework.http.MediaType;
-
 public class R {
     public static class JWT{
         public static final String PREFIX = "Bear ";
