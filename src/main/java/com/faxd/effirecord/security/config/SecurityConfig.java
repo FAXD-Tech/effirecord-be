@@ -67,11 +67,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    /**
-     * PasswordEncoder:加密编码
-     * 实际开发中开发环境一般是明文加密 在生产环境中是密文加密 也就可以可以配置多种加密方式
-     *
-     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -79,9 +74,10 @@ public class SecurityConfig {
 
     @Bean
     public LoginFilter loginFilter() throws Exception {
-        LoginFilter loginFilter = new LoginFilter(authenticationManager());
+        LoginFilter loginFilter = new LoginFilter();
         loginFilter.setAuthenticationSuccessHandler(new LoginSuccessHandler(new JwtUtil(jwtConfig),redisCacheService));
         loginFilter.setAuthenticationFailureHandler(new LoginFailureHandler());
+        loginFilter.setAuthenticationManager(authenticationManager());
         return loginFilter;
     }
 

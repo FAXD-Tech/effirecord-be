@@ -15,12 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
-    private  AuthenticationManager authenticationManager;
     private static final String LOGIN_URL = "/employee/login";
 
-    public LoginFilter(AuthenticationManager authenticationManager){
+    public LoginFilter(){
         super.setFilterProcessesUrl(LOGIN_URL);
-        super.setAuthenticationManager(authenticationManager);
     }
 
     @Override
@@ -37,7 +35,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         }
         Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(username, loginRequest.getPassword());
 
-        return this.authenticationManager.authenticate(authentication);
+        return this.getAuthenticationManager().authenticate(authentication);
     }
 
 }
