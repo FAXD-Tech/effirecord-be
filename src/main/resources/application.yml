@@ -28,6 +28,9 @@ spring:
           time_zone: UTC
         format_sql: true
     show-sql: true
+  redis:
+    host: localhost
+    port: 6379
 
 logging:
   level:
@@ -61,3 +64,7 @@ card:
       CEB: 光大银行
       CMBWLB: 中国招商银行
       HKBEA: 东亚银行（中国）
+
+jwt:
+  secret-key: d5689193-8bc1-419f-a062-9779ee25ce03
+  jwt-ttl: 900000

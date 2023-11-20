@@ -5,9 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -17,15 +15,12 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-@ToString
-public class EmployeePutDto {
+public class EmployeeLoginDto {
 
-    @NotBlank
     @Size(max = 255, message = "Username can not be more than 255 characters.")
-    @Pattern(regexp = "^(?=.*[a-zA-Z]).*$", message = "Name must contain at least one letter.")
+    @Pattern(regexp = "^(?=.*[a-zA-Z]).*$", message = "Name format is wrong")
     private String name;
 
-    @NotBlank(message = "Phone must not be empty.")
     @Pattern(regexp ="^((13)|(14)|(15)|(16)|(17)|(18))\\d{9}$",
                 message = "phone number must start with 13, 14, 15, 16, 17 or 18 with another 9 digits ")
     @Size(max = 15, message = "phone can not be more than 15 characters.")

@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -53,9 +54,12 @@ public class Employee extends BaseEntity{
     @OneToMany(mappedBy = "employee")
     private List<WorkHours> workHoursList;
 
-    @OneToMany(mappedBy = "createdBy")
-    private List<WorkHours> createdBy;
+//    @OneToMany(mappedBy = "createdBy")
+//    private List<WorkHours> createdBy;
+//
+//    @OneToMany(mappedBy = "updatedBy")
+//    private List<WorkHours> updatedBy;
 
-    @OneToMany(mappedBy = "updatedBy")
-    private List<WorkHours> updatedBy;
+    @ManyToMany(mappedBy = "employees",fetch = FetchType.EAGER)
+    private List<Role> roles;
 }

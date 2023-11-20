@@ -18,6 +18,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class EmployeePostDto {
     @NotBlank
+    @Pattern(regexp = "^(?=.*[a-zA-Z]).*$", message = "Name must contain at least one letter.")
     @Size(max = 255, message = "Username can not be more than 255 characters.")
     private String name;
 

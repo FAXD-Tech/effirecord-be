@@ -1,0 +1,54 @@
+version: "3.9"
+
+x-var: &APP_NAME effiRecord
+
+services:
+  postgresql:
+    container_name: effiRecord-postgresql
+    image: postgres:14.2-alpine
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10k"
+        max-file: "10"
+
+  pgadmin:
+    container_name: effiRecord-pgadmin
+    image: dpage/pgadmin4
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    restart: on-failure
+    ports:
+      - "8002:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: faxdtech@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+    environment:
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+
+
+
+
+
+

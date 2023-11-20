@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
@@ -31,6 +32,8 @@ public class EmployeeServiceTest {
 
     @Mock
     private EmployeeMapper employeeMapper;
+    @Mock
+    private PasswordEncoder passwordEncoder;
 
     @InjectMocks
     private EmployeeService employeeService;
@@ -44,6 +47,7 @@ public class EmployeeServiceTest {
         when(employeeMapper.employeePostDtoToEmployee(postDtoSample)).thenReturn(employeeSample);
         when(employeeRepository.save(employeeSample)).thenReturn(employeeSample);
         when(employeeMapper.employeeToEmployInfoDto(employeeSample)).thenReturn(infoDtoSample);
+        when(passwordEncoder.encode(postDtoSample.getPassword())).thenReturn("123456");
 
         EmployeeInfoDto result = employeeService.signIn(postDtoSample);
 
