@@ -6,6 +6,7 @@ import com.faxd.effirecord.service.CompanyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ public class CompanyController {
             summary = "Create a company",
             description = "Create a Company object. The response is the company information with id")
     @PostMapping("")
+    @PreAuthorize("hasPermission()")
     public CompanyInfoDto register(@RequestBody CompanyPostDto companyPostDto){
         return companyService.register(companyPostDto);
     }
@@ -36,9 +38,9 @@ public class CompanyController {
             summary = "Retrieve a company",
             description = "Retrieve a Company object by specifying its id. The response is the company information")
     @GetMapping("/{id}")
+    @PreAuthorize("hasPermission(#id,'company-admin','verify')")
     public CompanyInfoDto getCompanyById(@PathVariable Long id){
         return companyService.getCompanyById(id);
-
     }
 
     @Operation(

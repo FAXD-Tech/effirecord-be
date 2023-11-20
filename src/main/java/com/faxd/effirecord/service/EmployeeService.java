@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,9 +27,16 @@ public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
     private final EmployeeMapper employeeMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public EmployeeInfoDto signIn(final EmployeePostDto employeePostDto){
+        Optional<Employee> byNameOrPhone = employeeRepository.findByNameOrPhone(employeePostDto.getName(), employeePostDto.getPhone());
+        if( byNameOrPhone.isPresent()){
+            throw new RuntimeException("username or phone number has been used by others");
+        }
         Employee employees = employeeMapper.employeePostDtoToEmployee(employeePostDto);
+        String encodePassword = passwordEncoder.encode(employees.getPassword());
+        employees.setPassword(encodePassword);
         Employee savedEmployees = employeeRepository.save(employees);
         return employeeMapper.employeeToEmployInfoDto(savedEmployees);
     }

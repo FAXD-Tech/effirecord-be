@@ -4,6 +4,7 @@ import com.faxd.effirecord.exception.BankNotFoundException;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.Map;
 
 @Getter
 @Setter
-@Component
+@Configuration
 @ConfigurationProperties(prefix = "card")
 public class CardConfig {
 
