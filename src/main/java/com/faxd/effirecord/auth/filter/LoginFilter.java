@@ -3,19 +3,16 @@ package com.faxd.effirecord.auth.filter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.faxd.effirecord.dto.employee.EmployeeLoginDto;
 import com.faxd.effirecord.exception.UsernameAndPasswordException;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@RequiredArgsConstructor
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     private  AuthenticationManager authenticationManager;
@@ -40,7 +37,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         }
         Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(username, loginRequest.getPassword());
 
-        return this.getAuthenticationManager().authenticate(authentication);
+        return this.authenticationManager.authenticate(authentication);
     }
 
 }

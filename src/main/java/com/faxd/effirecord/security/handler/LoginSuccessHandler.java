@@ -6,7 +6,6 @@ import com.faxd.effirecord.constant.R;
 import com.faxd.effirecord.jwt.JwtUtil;
 import com.faxd.effirecord.service.RedisCacheService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
